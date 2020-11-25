@@ -44,15 +44,15 @@ struct filehandle_t
 	int inode_number;
 };
 
-int open_namei(char *filename);
+int open_namei(char *filename); //ssufs에서 filename을 이름으로 갖는 파일의 inodenum을 반환한다.
 
-void ssufs_formatDisk();
-int ssufs_allocInode();
-void ssufs_freeInode(int inodenum);
-void ssufs_readInode(int inodenum, struct inode_t *inodeptr);
-void ssufs_writeInode(int inodenum, struct inode_t *inodeptr); 
-int ssufs_allocDataBlock();
-void ssufs_freeDataBlock(int blocknum);
-void ssufs_readDataBlock(int blocknum, char *buf);
-void ssufs_writeDataBlock(int blocknum, char *buf);
-void ssufs_dump();
+void ssufs_formatDisk(); //ssufs를 초기화하는 함수
+int ssufs_allocInode(); //node_freelist에서 비어있는 첫 노드의 인덱스를 반환한다.
+void ssufs_freeInode(int inodenum); //inodenum에 해당하는 inode를 free한다.
+void ssufs_readInode(int inodenum, struct inode_t *inodeptr); //inodenum에 해당하는 inode_t의 정보를 inodeptr에 읽어온다.
+void ssufs_writeInode(int inodenum, struct inode_t *inodeptr); //inodeptr이 가리키는 inode_t의 정보를 inodenum에 작성한다.
+int ssufs_allocDataBlock(); //atablock_freelist에서 비어있는 첫 노드의 인덱스를 반환한다
+void ssufs_freeDataBlock(int blocknum); //blocknum에 해당하는 DataBlock을 free한다.
+void ssufs_readDataBlock(int blocknum, char *buf); //buf 배열에 blocknum에 해당하는 DataBlock의 데이터를 읽어온다.
+void ssufs_writeDataBlock(int blocknum, char *buf); //blocknum에 해당하는 DataBlock에 buf 배열의 데이터를 작성한다.
+void ssufs_dump(); //현재 ssufs의 상태를 출력한다.
